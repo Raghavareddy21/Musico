@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'music',
     'userauth',
     'djng',
+    'tagging',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [
@@ -125,7 +127,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    ('node_modules', os.path.join(BASE_DIR, 'node_modules')),
+('node_modules', os.path.join(BASE_DIR, 'node_modules')),
 ]
 FORM_RENDERER = 'djng.forms.renderers.DjangoAngularBootstrap3Templates'
 FORM_RENDERER = 'djng.forms.renderers.DjangoAngularTemplates'

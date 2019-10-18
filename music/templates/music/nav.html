@@ -1,15 +1,37 @@
 <html>
+
 <head>
+
+   {% load staticfiles %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="" type="text/javascript">
+<script src="{% static 'node_modules/angular/angular.js' %}" type="text/javascript">
 </script>
 <script src="{% static "jquery.js" %}"></script>
+
+<script>
+  
+var some = angular.module("first_module", [])
+        .controller("ContentCtrl", function($scope) {
+          var album = [
+          {% for album in movie_list %}
+        { 'name': '{{album.name}}'},
+        {% endfor %}
+        ];
+          $scope.name = album.name;
+          });
+  
+        </script>
+
 </head>
-<body>
+{% load staticfiles %}
+        {% load djng_tags %}
+{% angularjs ng%}
+
+<body ng-app="first_module">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
     <a class="navbar-brand" href="/music/list/">Albums</a>
@@ -23,21 +45,17 @@
     </ul>
     <ul class="navbar-nav  ml-auto">
       <li class="nav-item">
-        {% load staticfiles %}
-        {% load djng_tags %}
-{% angularjs ng %}
-        <div{% if ng %} ng-repeat="album in movie_list"{% endif %} align="right">
-          
+        
+        <div align="right" >
+         
+
   <form type="get" style="margin: 0" >
-    <input  id="search_box" type="text" ng-model="s"  placeholder="Search movie">
+    <input  id="search_box" type="text" ng-model="album.name"  placeholder="Search movie" name="album">
 
-    <button id="search_submit" type="submit" action="/music/{{album.id}}/" method="post">Search</button>
-    {% for s in song.song_name%}
-
-    {% csrf_token %}
-    {%end for%}
+    <button id="search_submit" type="submit" >Search</button>
+    
 </form>
-{% endangularjs %}
+
 </div>
 
 </li>
@@ -51,4 +69,6 @@
 {% block content %}
 {% endblock %}
 </body>
+{% endangularjs %}
+
 </html>
