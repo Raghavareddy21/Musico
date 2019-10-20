@@ -11,6 +11,7 @@ class movielist(models.Model):
     about = models.CharField(max_length=200)
     image = models.FileField(upload_to='pictures/')
     date = models.DateField()
+    language=models.CharField(max_length=50)
     upload_date = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
